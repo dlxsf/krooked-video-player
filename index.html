@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>test</title>
+
+<style>
+body {
+    margin: 10px auto;
+    font: 75%/120% Arial, Helvetica, sans-serif;
+}
+.accordion {
+    margin: auto;
+    max-width: 1000px;
+    border-bottom: solid 1px #c4c4c4;
+}
+.accordion h2 {
+    padding: 7px 15px;
+    margin: 0;
+    font: bold 120%/100% Arial, Helvetica, sans-serif;
+    border: solid 1px #c4c4c4;
+    border-bottom: none;
+    cursor: pointer;
+}
+.accordion h2:hover {
+    background-color: #e3e2e2;
+}
+.accordion h2.active {
+    background: #dee;
+}
+.accordion div {
+    position: relative;
+    padding-bottom: 56.65%;
+    padding-top: 0;
+    height: 0;
+    overflow: hidden;
+    background: #000;
+    display: none;
+    }
+
+.accordion div iframe,
+.accordion div object,
+.accordion div embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    }
+
+
+
+</style>
+
+</head>
+
+<body>
+
+<div class="accordion">
+        <h2>Video 1</h2>
+    <div><iframe width="420" height="315" src="http://www.youtube.com/embed/-e5D-9wu3ns" frameborder="0" allowfullscreen></iframe></div>
+        <h2>Video 2</h2>
+    <div><iframe width="420" height="315" src="http://www.youtube.com/embed/C4S-N5UoJZw" frameborder="0" allowfullscreen></iframe></div>
+        <h2 class="active">Video 3</h2>
+    <div><iframe width="420" height="315" src="http://www.youtube.com/embed/4XGDAgnvPWw" frameborder="0" allowfullscreen></iframe></div>
+        <h2>Video 4</h2>
+    <div><iframe width="420" height="315" src="http://www.youtube.com/embed/S-1cVyarm0A" frameborder="0" allowfullscreen></iframe></div>
+        <h2>Video 5</h2>
+    <div><iframe width="420" height="315" src="http://www.youtube.com/embed/xK9tEZ40d68" frameborder="0" allowfullscreen></iframe></div>
+        <h2>Video 6</h2>
+    <div><iframe width="420" height="315" src="http://www.youtube.com/embed/KZi0Wok8n2E" frameborder="0" allowfullscreen></iframe></div>
+</div>
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+<script>
+
+$(document).ready(function(){
+    $(".accordion h2").eq(2).addClass("active");
+    $(".accordion div").eq(2).show();
+    $(".accordion h2").click(function(){
+        var video = $(".accordion h2.active").next().children();
+        var src = video.attr("src");
+        video.attr("src","");
+        video.attr("src",src);
+
+        $(this).next("div").slideToggle("slow").siblings("div:visible").slideUp("slow");
+        $(this).toggleClass("active");
+        $(this).siblings("h2").removeClass("active");
+    });
+});
+
+</script>
+
+</body>
+</html>
